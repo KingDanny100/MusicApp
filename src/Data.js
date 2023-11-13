@@ -33,13 +33,13 @@ export const data = [
     Album: "Unkwown Album",
   },
   {
-    name: "Cheque",
+    name: "History - Cheque ft. Fireboy",
     song: Che,
     image: Cheque,
     Album: "Unkwown Album",
   },
   {
-    name: "Omah Lay",
+    name: "Holy Ghost - Omah Lay",
     song: Omah,
     image: OmahLay,
     Album: "Unkwown Album",

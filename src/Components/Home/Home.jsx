@@ -6,7 +6,7 @@ import { data , Adverts, MyContext} from '../../Data'
 const Home = () => {
     const data = useContext(MyContext)
   return (
-    <div>Home</div>
+    <div className='home'>Home</div>
   )
 }
 
