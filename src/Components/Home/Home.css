@@ -1,0 +1,37 @@
+.boxcontainer{
+    background-color: #f3f2f2;
+    width: 100%;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 40px 20px 60px 60px;
+    gap: 10px;
+    height: 100vh;
+    border-left: 1px solid black;
+
+}
+.box{
+    background-color: lightblue;
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+    padding: 5px;
+    flex-direction: column;
+    height: 250px;
+    justify-content: center;
+}
+.boximage{
+    width: 60%;
+    height: 150px;
+    object-fit: cover;
+}
+.songtittle{
+    background-color: rgb(238, 231, 231);
+    width: 60%;
+    /* margin-top: -3px; */
+
+}
+.album{
+    background-color: rgb(240, 240, 238);
+    width: 60%;
+    /* margin-top: -10px; */
+}

@@ -6,7 +6,15 @@ import { data , Adverts, MyContext} from '../../Data'
 const Home = () => {
     const data = useContext(MyContext)
   return (
-    <div className='home'>Home</div>
+    <div className='boxcontainer'>
+      {data.map((item, index)=>{
+        return <div className='box' key={index}>
+          <img className='boximage' src={item.image} alt={item.name} />
+          <h4 className='songtittle'>{item.name}</h4>
+          <h5 className='album'>{item.Album}</h5>
+        </div>
+      })}
+    </div>
   )
 }
 
