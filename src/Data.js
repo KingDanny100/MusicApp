@@ -22,58 +22,64 @@ import { createContext } from "react";
 export const MyContext = createContext('')
 
 export const data = [
-  // {
-  //   name: "Scatter",
-  //   song: Fire,
-  //   image: Fireboy,
-  //   Artist: " - Fireboy",
-  // },
   {
-    name: "Alone",
-    song: Burn,
-    image: Burna,
-    Artist: " - Burna Boy",
+    artist: "Fireboy",
+    song: Fire,
+    title: "Hello",
+    image: Fireboy,
+    Album: "Unknown Album",
+    duration: '03:07'
   },
   {
-    name: "History",
+    artist: "Burna Boy",
+    song: Burn,
+    title: "Common Person",
+    image: Burna,
+    Album: "Love, Damini",
+    duration: '03:43'
+  },
+  {
+    artist: "Cheque ft. Fireboy",
+    title: "History",
     song: Che,
     image: Cheque,
-    Artist: " - Cheque ft. Fireboy",
+    Album: "Unknown Album",
+    duration: '03:00'
   },
   {
-    name: "Holy Ghost",
+    artist: "Omah Lay",
+    title: "Holy Ghost",
     song: Omah,
     image: OmahLay,
-    Artist: " - Omah Lay",
+    Album: "Unknown Album",
+    duration: '03:06'
   },
   {
-    name: "Starships",
+    artist: "Nicki Minaj",
+    title: "Hello",
     song: Nick,
     image: Nicki,
-    Artist: " - Nicki Minaj",
+    Album: "Unknown Album",
+    duration: '02:24'
   },
   {
-    name: "DND",
+    artist: "Rema",
+    title: 'DND',
     song: Rem,
     image: Rema,
-    Artist: " - Rema",
-  },
-  {
-    name: "Ole",
-    song: Qin,
-    image: Qing,
-    Artist: " - Qing Madi ft BNXN",
+    Album: "Ravage",
+    duration: '02:46'
   },
 ];
 
 export const Adverts = [
     {
-        name: "Travelbeta",
+        artist: "Travelbeta",
         song: travel,
         image: travelbeta
     },
     {
-        name: "airtel",
+        artist: "airtel",
         song: air,
         image: airtel
     }

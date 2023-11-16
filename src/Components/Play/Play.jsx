@@ -13,10 +13,16 @@ import ShuffleRoundedIcon from "@mui/icons-material/ShuffleRounded";
 import RepeatOneRoundedIcon from "@mui/icons-material/RepeatOneRounded";
 import RepeatRoundedIcon from "@mui/icons-material/RepeatRounded";
 
-const Play = () => {
+const Play = (props) => {
   const dataa = useContext(MyContext);
+  const musics = dataa.map((item) => {
+    return item.song;
+  });
   const Ads = Adverts;
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [advertSongIndex, setCurrentAdvertSongIndex] = useState(
+    musics.length - 1 + Math.ceil(Math.random(0) * 2)
+  );
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -26,21 +32,19 @@ const Play = () => {
   const [isShuffle, setIsShuffle] = useState(false);
   const [isMute, setIsMute] = useState(false);
   const [isAdvert, setIsAdvert] = useState(false);
+  const [adIntervalCount, setAdIntervalCount] = useState(0);
   const audioRef = useRef(null);
-
-  const musics = dataa.map((item) => {
-    return item.song;
-  });
 
   const adSongs = Ads.map((item) => {
     return item.song;
   });
 
-  const currentSong = musics[currentSongIndex];
+  const allSongs = [...musics, ...adSongs];
 
-  // console.log(musics);
-  //   console.log(adSongs);
-  // console.log(audioRef.current);
+  const currentSong = isAdvert
+    ? allSongs[advertSongIndex]
+    : allSongs[currentSongIndex];
+
   const formatTime = (sec) => {
     const minutes = Math.floor(sec / 60);
     const seconds = Math.floor(sec % 60);
@@ -49,15 +53,19 @@ const Play = () => {
       "0"
     )}`;
   };
+  const shuffleSongs = () => {
+    const songsToPlay = musics.filter(
+      (song, index) => index !== currentSongIndex
+    );
+    const randomInd = Math.floor(Math.random() * songsToPlay.length);
+    const nextSongInd = musics.indexOf(songsToPlay[randomInd]);
+
+    setCurrentSongIndex(nextSongInd);
+  };
 
   const playNext = () => {
     if (isShuffle) {
-      const songsToPlay = musics.filter(
-        (song, index) => index !== currentSongIndex
-      );
-      const randomInd = Math.floor(Math.random() * songsToPlay.length);
-      const nextSongInd = musics.indexOf(songsToPlay[randomInd]);
-      setCurrentSongIndex(nextSongInd - 1);
+      shuffleSongs();
     } else {
       setCurrentSongIndex((prev) => (prev + 1) % musics.length);
     }
@@ -67,12 +75,15 @@ const Play = () => {
   const playPauseToggle = () => {
     setIsPlaying((prev) => !prev);
   };
-  
 
   const playPrevious = () => {
-    setCurrentSongIndex((prevIndex) =>
+    if (isShuffle) {
+      shuffleSongs();
+    }
+    else{setCurrentSongIndex((prevIndex) =>
       prevIndex === 0 ? musics.length - 1 : prevIndex - 1
-    );
+    )
+    }
     setIsPlaying(true);
   };
 
@@ -81,7 +92,6 @@ const Play = () => {
     audioRef.current.currentTime = 0;
     setIsPlaying(false);
   };
-
   const handleRepeatShuffle = () => {
     if (isRepeatAll) {
       setIsRepeatAll((prev) => !prev);
@@ -100,18 +110,12 @@ const Play = () => {
     }
   };
 
-  
-
- 
-
-  
-
-  
-
   const handleSongEnd = () => {
     if (isRepeatOne && !isRepeatAll && !isShuffle) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
+      setIsAdvert(false);
+        audioRef.current.currentTime = 0;
+        audioRef.current.play();
+     
     } else {
       playNext();
     }
@@ -121,6 +125,42 @@ const Play = () => {
     const newVolume = e.target.value;
     setVolume(newVolume);
     audioRef.current.volume = newVolume;
+  };
+
+  useEffect(() => {
+    setIsAdvert(false);
+    setAdIntervalCount((prev) => prev + 1);
+
+    if (adSongs.includes(currentSong)) {
+      continuePlay();
+    } else if (adIntervalCount === 5) {
+      runAdvert();
+      setAdIntervalCount(0);
+    }
+  }, [currentSongIndex]);
+
+  const continuePlay = () => {
+    setCurrentSongIndex((prev) => {
+      if (prev === 0) {
+        return 5;
+      } else {
+        return prev - 1;
+      }
+    });
+  };
+
+  useEffect(()=> {
+    props.getIndex(currentSongIndex)
+  }, [currentSongIndex])
+
+  const runAdvert = () => {
+    if (!isAdvert) {
+      setIsAdvert(true);
+      const randIndex = Math.ceil(Math.random() * 2);
+      setCurrentAdvertSongIndex(musics.length - 1 + randIndex);
+    } else {
+      setIsAdvert(false);
+    }
   };
 
   useEffect(() => {
@@ -190,6 +230,7 @@ const Play = () => {
           value={currentTime}
           onChange={handleSliderChange}
           max={duration}
+          disabled={isAdvert}
         />
       </div>
 
@@ -197,22 +238,30 @@ const Play = () => {
         <section className="info_section">
           <div className="left_div">
             <img
-              src={isAdvert? Ads.image : dataa[currentSongIndex].image}
-              alt={isAdvert? Ads.name : dataa[currentSongIndex].name}
+              src={
+                isAdvert
+                  ? Ads[advertSongIndex === 6 ? 0 : 1].image
+                  : dataa[currentSongIndex].image
+              }
+              alt={
+                isAdvert
+                  ? Ads[advertSongIndex === 6 ? 0 : 1].name
+                  : dataa[currentSongIndex].name
+              }
             />
           </div>
           <div className="right_div">
             {!isAdvert && (
               <div>
-                <h2>{dataa[currentSongIndex].name}</h2>
-                <h4>{dataa[currentSongIndex].Artist}</h4>
+                <h2>{dataa[currentSongIndex].title}</h2>
+                <h4>{dataa[currentSongIndex].artist}</h4>
               </div>
             )}
           </div>
         </section>
 
         <section className="button_section">
-          <button onClick={handleRepeatShuffle}>
+          <button onClick={handleRepeatShuffle} disabled={isAdvert}>
             {isRepeatAll ? (
               <RepeatRoundedIcon fontSize="large" />
             ) : isRepeatOne ? (
@@ -221,7 +270,7 @@ const Play = () => {
               <ShuffleRoundedIcon fontSize="large" />
             )}
           </button>
-          <button onClick={playPrevious}>
+          <button onClick={playPrevious} disabled={isAdvert}>
             <SkipPreviousRoundedIcon fontSize="large" />
           </button>
           <button onClick={playPauseToggle}>
@@ -231,10 +280,10 @@ const Play = () => {
               <PlayArrowRoundedIcon fontSize="large" />
             )}
           </button>
-          <button onClick={playNext}>
+          <button onClick={playNext} disabled={isAdvert}>
             <SkipNextRoundedIcon fontSize="large" />
           </button>
-          <button onClick={stopPlay}>
+          <button onClick={stopPlay} disabled={isAdvert}>
             <StopRoundedIcon fontSize="large" />
           </button>
         </section>

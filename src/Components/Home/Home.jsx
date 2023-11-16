@@ -4,7 +4,7 @@ import './Home.css';
 import { HomeContext } from '../../HomeContext';
 
 
-const Home = () => {
+const Home = (props) => {
     // const data = useContext(MyContext)
 
     const { songs, setCurrentSongIndex, setIsPlaying, currentSongIndex, isPlaying } = useContext(HomeContext);
@@ -36,8 +36,8 @@ const Home = () => {
        <div className='box' key={index} onClick={() => handleImagePlay(index)}>
         <h4>Double click to play</h4>
           <img className='boximage' src={item.image} alt={item.name} />
-          <h4 className='songtittle'>{item.name}</h4>
-          <h5 className='album'>{item.Artist}</h5>
+          <h4 className='songtittle'>{item.title}</h4>
+          <h5 className='album'>{item.Album}</h5>
         </div>
        );
       })}
