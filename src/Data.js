@@ -21,51 +21,63 @@ export const MyContext = createContext('')
 
 export const data = [
   {
-    name: "Fireboy",
+    artist: "Fireboy",
     song: Fire,
+    title: "Hello",
     image: Fireboy,
-    Album: "Unkwown Album",
+    Album: "Unknown Album",
+    duration: '03:07'
   },
   {
-    name: "Burna Boy",
+    artist: "Burna Boy",
     song: Burn,
+    title: "Common Person",
     image: Burna,
-    Album: "Unkwown Album",
+    Album: "Love, Damini",
+    duration: '03:43'
   },
   {
-    name: "History - Cheque ft. Fireboy",
+    artist: "Cheque ft. Fireboy",
+    title: "History",
     song: Che,
     image: Cheque,
-    Album: "Unkwown Album",
+    Album: "Unknown Album",
+    duration: '03:00'
   },
   {
-    name: "Holy Ghost - Omah Lay",
+    artist: "Omah Lay",
+    title: "Holy Ghost",
     song: Omah,
     image: OmahLay,
-    Album: "Unkwown Album",
+    Album: "Unknown Album",
+    duration: '03:06'
   },
   {
-    name: "Nicki Minaj",
+    artist: "Nicki Minaj",
+    title: "Hello",
     song: Nick,
     image: Nicki,
-    Album: "Unkwown Album",
+    Album: "Unknown Album",
+    duration: '02:24'
   },
   {
-    name: "Rema",
+    artist: "Rema",
+    title: 'DND',
     song: Rem,
     image: Rema,
-    Album: "Unkwown Album",
+    Album: "Ravage",
+    duration: '02:46'
   },
 ];
 
 export const Adverts = [
     {
-        name: "Travelbeta",
+        artist: "Travelbeta",
         song: travel,
         image: travelbeta
     },
     {
-        name: "airtel",
+        artist: "airtel",
         song: air,
         image: airtel
     }
