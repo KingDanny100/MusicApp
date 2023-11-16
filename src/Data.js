@@ -6,12 +6,14 @@ import Rema from "./Images/Rema.jpg";
 import Burna from "./Images/burnaboy.webp";
 import travelbeta from "./Images/travelbeta.jpg";
 import airtel from "./Images/airtel.jpg";
+import Qing from "./Images/Quin.png";
 import Fire from "./Musics/Fireboy.mp3";
 import Burn from "./Musics/Burna.mp3";
 import Nick from "./Musics/Nicki.mp3";
 import Rem from "./Musics/Rema.mp3";
 import Che from "./Musics/Cheque.mp3";
 import Omah from "./Musics/OmahLay.mp3";
+import Qin from "./Musics/QingMadi.mp3";
 import air from "./Ads/Airtel.mp3";
 import travel from "./Ads/travelbeta.mp3";
 import { createContext } from "react";
@@ -20,41 +22,47 @@ import { createContext } from "react";
 export const MyContext = createContext('')
 
 export const data = [
+  // {
+  //   name: "Scatter",
+  //   song: Fire,
+  //   image: Fireboy,
+  //   Artist: " - Fireboy",
+  // },
   {
-    name: "Fireboy",
-    song: Fire,
-    image: Fireboy,
-    Album: "Unkwown Album",
-  },
-  {
-    name: "Burna Boy",
+    name: "Alone",
     song: Burn,
     image: Burna,
-    Album: "Unkwown Album",
+    Artist: " - Burna Boy",
   },
   {
-    name: "History - Cheque ft. Fireboy",
+    name: "History",
     song: Che,
     image: Cheque,
-    Album: "Unkwown Album",
+    Artist: " - Cheque ft. Fireboy",
   },
   {
-    name: "Holy Ghost - Omah Lay",
+    name: "Holy Ghost",
     song: Omah,
     image: OmahLay,
-    Album: "Unkwown Album",
+    Artist: " - Omah Lay",
   },
   {
-    name: "Nicki Minaj",
+    name: "Starships",
     song: Nick,
     image: Nicki,
-    Album: "Unkwown Album",
+    Artist: " - Nicki Minaj",
   },
   {
-    name: "Rema",
+    name: "DND",
     song: Rem,
     image: Rema,
-    Album: "Unkwown Album",
+    Artist: " - Rema",
+  },
+  {
+    name: "Ole",
+    song: Qin,
+    image: Qing,
+    Artist: " - Qing Madi ft BNXN",
   },
 ];
 

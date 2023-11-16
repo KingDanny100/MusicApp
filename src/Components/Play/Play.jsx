@@ -129,7 +129,9 @@ const Play = () => {
     } else {
       audioRef.current.pause();
     }
-  }, [isPlaying, audioRef]);
+    console.log("Current Song Index:", currentSongIndex);
+    console.log("Is Playing:", isPlaying);
+  }, [isPlaying, audioRef, currentSongIndex]);
 
   const handleDurationChange = () => {
     setDuration(audioRef.current.duration);
@@ -203,7 +205,7 @@ const Play = () => {
             {!isAdvert && (
               <div>
                 <h2>{dataa[currentSongIndex].name}</h2>
-                <h4>{dataa[currentSongIndex].Album}</h4>
+                <h4>{dataa[currentSongIndex].Artist}</h4>
               </div>
             )}
           </div>
