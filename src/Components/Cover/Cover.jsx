@@ -7,7 +7,7 @@ const Cover = () => {
     <div className='Cover'>
        <img src={CoverImage} alt="Description" />
     </div>
-   
+
   )
 }
 
