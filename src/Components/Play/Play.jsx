@@ -169,7 +169,7 @@ const Play = (props) => {
     } else {
       audioRef.current.pause();
     }
-  }, [isPlaying]);
+  }, [isPlaying, audioRef, currentSongIndex]);
 
   const handleDurationChange = () => {
     setDuration(audioRef.current.duration);
@@ -238,12 +238,12 @@ const Play = (props) => {
             <img
               src={
                 isAdvert
-                  ? Ads[advertSongIndex === 6 ? 0 : 1].image
+                  ? Ads[advertSongIndex === 13 ? 0 : 1].image
                   : dataa[currentSongIndex].image
               }
               alt={
                 isAdvert
-                  ? Ads[advertSongIndex === 6 ? 0 : 1].name
+                  ? Ads[advertSongIndex === 13 ? 0 : 1].name
                   : dataa[currentSongIndex].name
               }
             />
