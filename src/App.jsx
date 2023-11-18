@@ -18,10 +18,17 @@ import Nowplaying from "./Components/NowPlaying/Nowplaying";
 function App() {
   const [getIndex, setGetIndex] = useState(0);
   const [firstLoad, setFirstLoad] = useState(true);
+  const [homeIndex, setHomeIndex] = useState(-25)
 
-  const handleGetIndex = (index) => {
-    setGetIndex(index);
+  const handleGetIndex = (ind) => {
+    setGetIndex(ind);
   };
+
+  const getHomeIndex = (index) => {
+    setHomeIndex(index)
+  }
+
+
 
   useEffect(() => {
     const delay = 3000;
@@ -44,14 +51,14 @@ function App() {
             <><div className="main_body">
                   <Navbar />
                   <Routes>
-                    <Route path="/" Component={Home} />
-                    <Route path="/queue" Component={Queue} />
+                    <Route path="/" element={<Home getHomeIndex={getHomeIndex} />} />
+                    <Route path="/queue" element={<Queue getHomeIndex={getHomeIndex} />} />
                     <Route path="/video" Component={Video} />
                     <Route path="/playlist" Component={Playlist} />
                     <Route path="/album" Component={Album} />
                     <Route path="/nowplaying" element={<Nowplaying getIndex={getIndex} />} />
                   </Routes>
-                </div><Play getIndex={handleGetIndex} /></>
+                </div><Play getIndex={handleGetIndex} homeIndex={homeIndex} setHomeIndex={setHomeIndex}/></>
           )}
         </main>
       </MyProvider>

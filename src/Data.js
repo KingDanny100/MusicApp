@@ -37,7 +37,7 @@ export const data = [
   {
     artist: "Fireboy",
     song: Fire,
-    title: "Hello",
+    title: "Scatter",
     image: Fireboy,
     Album: "Laughter, Goosebumps",
     duration: '03:07'
@@ -53,7 +53,7 @@ export const data = [
   {
     artist: "Burna Boy",
     song: Burn,
-    title: "Common Person",
+    title: "Memories",
     image: Burna,
     Album: "Love, Damini",
     duration: '03:43'
@@ -61,7 +61,7 @@ export const data = [
   {
     artist: "Marshmello x Khaled",
     song: Mars,
-    title: "Slience",
+    title: "Silence",
     image: Marsh,
     Album: "Forza Horizon",
     duration: '02:56'
