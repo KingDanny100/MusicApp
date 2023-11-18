@@ -63,6 +63,18 @@ const Play = (props) => {
     setCurrentSongIndex(nextSongInd);
   };
 
+  
+  useEffect(()=> {
+    if(props.homeIndex >= 0){
+      setCurrentSongIndex(props.homeIndex)
+      if(!isAdvert){
+        audioRef.current.play()
+        setIsPlaying(true)
+      }
+      props.setHomeIndex(-25)
+    }
+  }, [props.homeIndex])
+
   const playNext = () => {
     if (isShuffle) {
       shuffleSongs();

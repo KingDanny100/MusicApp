@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./Queue.css";
 import { MyContext } from "../../Data";
 
-const Queue = () => {
+const Queue = (props) => {
   const dataa = useContext(MyContext);
 
   return (
@@ -17,7 +17,7 @@ const Queue = () => {
       </ul>
       {dataa.map((item, index) => {
         return (
-          <div key={index} className="queue_box">
+          <div key={index} className="queue_box" onClick={() => props.getHomeIndex(index)} style={{cursor:'pointer'}}>
             <ul className="queue">
               <li>{index + 1}</li>
               <li>{item.title}</li>
